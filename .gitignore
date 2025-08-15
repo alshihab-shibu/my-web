@@ -1,5 +1,6 @@
 # Documentation files
 *.md
+!README.md
 EMAIL_SETUP.md
 
 # System files
