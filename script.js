@@ -366,13 +366,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Parallax Effect for Hero Section
+// Subtle Parallax Effect for Hero Section (reduced intensity for better readability)
 window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
     const hero = document.querySelector('.hero');
     
-    if (hero) {
-        const speed = 0.5;
+    if (hero && scrolled < window.innerHeight) {
+        const speed = 0.2; // Reduced from 0.5 to 0.2 for smoother experience
         hero.style.transform = `translateY(${scrolled * speed}px)`;
     }
 });
