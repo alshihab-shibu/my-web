@@ -115,25 +115,60 @@ if (contactForm) {
             return;
         }
         
-        // Simulate form submission (replace with actual form submission logic)
-        showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
-        this.reset();
-        
-        // For actual implementation, you would send the data to your backend:
+        // Method 1: EmailJS (Recommended for GitHub Pages)
+        // Uncomment and configure EmailJS for actual email sending
         /*
-        fetch('/submit-contact', {
-            method: 'POST',
-            body: formData
+        emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', {
+            from_name: name,
+            from_email: email,
+            message: message,
+            to_email: 'alshihab7510@gmail.com'
         })
-        .then(response => response.json())
-        .then(data => {
-            showNotification('Message sent successfully!', 'success');
-            this.reset();
-        })
-        .catch(error => {
-            showNotification('Error sending message. Please try again.', 'error');
+        .then(function(response) {
+            showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
+            contactForm.reset();
+        }, function(error) {
+            showNotification('Failed to send message. Please try again.', 'error');
         });
         */
+        
+        // Method 2: Formspree (Alternative)
+        // Replace with your Formspree endpoint
+        /*
+        fetch('https://formspree.io/f/YOUR_FORM_ID', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: name,
+                email: email,
+                message: message
+            })
+        })
+        .then(response => {
+            if (response.ok) {
+                showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
+                this.reset();
+            } else {
+                throw new Error('Network response was not ok');
+            }
+        })
+        .catch(error => {
+            showNotification('Failed to send message. Please try again.', 'error');
+        });
+        */
+        
+        // Method 3: Mailto fallback (current implementation)
+        const subject = encodeURIComponent(`Contact from ${name}`);
+        const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+        const mailtoLink = `mailto:alshihab7510@gmail.com?subject=${subject}&body=${body}`;
+        
+        // Open email client
+        window.open(mailtoLink, '_blank');
+        
+        showNotification('Opening your email client to send the message...', 'info');
+        this.reset();
     });
 }
 
@@ -288,16 +323,16 @@ function typeWriter(element, text, speed = 100) {
     type();
 }
 
-// Initialize typing animation when page loads
-window.addEventListener('load', () => {
-    const heroTitle = document.querySelector('.hero-title');
-    if (heroTitle) {
-        const originalText = heroTitle.innerHTML;
-        setTimeout(() => {
-            typeWriter(heroTitle, originalText, 50);
-        }, 500);
-    }
-});
+// Initialize typing animation when page loads (disabled to prevent HTML display issues)
+// window.addEventListener('load', () => {
+//     const heroTitle = document.querySelector('.hero-title');
+//     if (heroTitle) {
+//         const originalText = heroTitle.innerHTML;
+//         setTimeout(() => {
+//             typeWriter(heroTitle, originalText, 50);
+//         }, 500);
+//     }
+// });
 
 // Skill Cards Hover Effect
 document.addEventListener('DOMContentLoaded', () => {
