@@ -31,8 +31,8 @@ Then open `http://localhost:8000` in your browser.
 - Actual published URL is `https://alshihab-shibu.github.io/my-web/`
 - No custom domain is currently configured
 
-## ℹ️ Resume Details
-Resume-specific details were not available in this repository. If you want me to add experience, skills, or project highlights from your resume, please paste the relevant text or add the resume file to the workspace.
+## Resume Details
+Portfolio content is aligned with `resume/Alshihab_Shibu_Resume.pdf`, including Magento 2 experience, GraphQL and REST API skills, AI-driven automation, projects, and education details.
 
 ## 📄 License
 MIT License

@@ -84,11 +84,11 @@ window.addEventListener('scroll', () => {
 window.addEventListener('scroll', function() {
     const navbar = document.querySelector('.navbar');
     if (window.scrollY > 50) {
-        navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-        navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.15)';
+        navbar.style.background = 'rgba(16, 24, 39, 0.94)';
+        navbar.style.boxShadow = '0 16px 42px rgba(0, 0, 0, 0.28)';
     } else {
-        navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-        navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+        navbar.style.background = 'rgba(16, 24, 39, 0.82)';
+        navbar.style.boxShadow = '0 12px 34px rgba(0, 0, 0, 0.22)';
     }
 });
 
@@ -271,7 +271,7 @@ notificationStyles.textContent = `
     }
     
     .nav-link.active {
-        color: #3498db !important;
+        color: #73e2a7 !important;
     }
     
     .nav-link.active::after {
@@ -369,13 +369,31 @@ document.addEventListener('DOMContentLoaded', () => {
 // Subtle Parallax Effect for Hero Section (reduced intensity for better readability)
 window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
-    const hero = document.querySelector('.hero');
+    const heroGradient = document.querySelector('.hero-gradient');
     
-    if (hero && scrolled < window.innerHeight) {
-        const speed = 0.2; // Reduced from 0.5 to 0.2 for smoother experience
-        hero.style.transform = `translateY(${scrolled * speed}px)`;
+    if (heroGradient && scrolled < window.innerHeight) {
+        const speed = 0.12;
+        heroGradient.style.backgroundPosition = `center ${50 + scrolled * speed / 8}%`;
     }
 });
+
+// Project feature image parallax
+function updateProjectParallax() {
+    const projectImages = document.querySelectorAll('.feature-projects .project-image');
+
+    projectImages.forEach(image => {
+        const rect = image.getBoundingClientRect();
+        const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+        const progress = (rect.top + rect.height / 2) / viewportHeight;
+        const y = Math.max(28, Math.min(72, 72 - progress * 34));
+
+        image.style.setProperty('--parallax-y', `${y}%`);
+    });
+}
+
+window.addEventListener('scroll', updateProjectParallax, { passive: true });
+window.addEventListener('resize', updateProjectParallax);
+window.addEventListener('load', updateProjectParallax);
 
 // Statistics Counter Animation
 function animateCounter(element, start, end, duration) {
@@ -426,7 +444,10 @@ loadingStyles.textContent = `
         left: 0;
         width: 100%;
         height: 100%;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background:
+            radial-gradient(circle at 15% 20%, rgba(46, 204, 113, 0.42), transparent 28%),
+            radial-gradient(circle at 70% 35%, rgba(52, 152, 219, 0.5), transparent 26%),
+            linear-gradient(135deg, #111827 0%, #172033 48%, #12313a 100%);
         z-index: 10000;
         transition: opacity 0.5s ease-out;
         pointer-events: none;
