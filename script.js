@@ -165,7 +165,7 @@ if (contactForm) {
         const mailtoLink = `mailto:alshihab7510@gmail.com?subject=${subject}&body=${body}`;
         
         // Open email client
-        window.open(mailtoLink, '_blank');
+        window.open(mailtoLink, '_blank', 'noopener,noreferrer');
         
         showNotification('Opening your email client to send the message...', 'info');
         this.reset();
