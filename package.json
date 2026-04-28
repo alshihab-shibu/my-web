@@ -1,0 +1,29 @@
+{
+  "name": "alshihab-shibu-portfolio",
+  "version": "1.0.0",
+  "description": "Personal portfolio website for Alshihab Shibu - Magento Developer",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve . -p 8000",
+    "dev": "npx serve . -p 8000 --open",
+    "build": "echo 'No build step required for static site'"
+  },
+  "keywords": [
+    "portfolio",
+    "magento",
+    "developer",
+    "php",
+    "web-development",
+    "responsive"
+  ],
+  "author": "Alshihab Shibu",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alshihab-shibu/my-web.git"
+  },
+  "homepage": "https://alshihab-shibu.dev/",
+  "devDependencies": {
+    "serve": "^14.2.1"
+  }
+}
