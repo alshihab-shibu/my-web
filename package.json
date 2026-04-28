@@ -22,11 +22,7 @@
     "type": "git",
     "url": "https://github.com/alshihab-shibu/my-web.git"
   },
-<<<<<<< HEAD
-  "homepage": "https://alshihab-shibu.dev/",
-=======
   "homepage": "https://alshihab-shibu.github.io/my-web/",
->>>>>>> seo-improvements
   "devDependencies": {
     "serve": "^14.2.1"
   }
