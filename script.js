@@ -3,26 +3,27 @@ document.addEventListener('DOMContentLoaded', function() {
     const mobileMenu = document.getElementById('mobile-menu');
     const navMenu = document.getElementById('nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');
+    const body = document.body;
 
     // Toggle mobile menu
     mobileMenu.addEventListener('click', function() {
-        navMenu.classList.toggle('active');
+        const isActive = navMenu.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
         
-        // Animate hamburger bars
-        const bars = mobileMenu.querySelectorAll('.bar');
-        bars[0].style.transform = navMenu.classList.contains('active') ? 'rotate(45deg) translate(5px, 5px)' : '';
-        bars[1].style.opacity = navMenu.classList.contains('active') ? '0' : '1';
-        bars[2].style.transform = navMenu.classList.contains('active') ? 'rotate(-45deg) translate(7px, -6px)' : '';
+        // Prevent scrolling when menu is open
+        if (isActive) {
+            body.style.overflow = 'hidden';
+        } else {
+            body.style.overflow = '';
+        }
     });
 
     // Close mobile menu when clicking on nav links
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
             navMenu.classList.remove('active');
-            const bars = mobileMenu.querySelectorAll('.bar');
-            bars[0].style.transform = '';
-            bars[1].style.opacity = '1';
-            bars[2].style.transform = '';
+            mobileMenu.classList.remove('active');
+            body.style.overflow = '';
         });
     });
 
@@ -32,10 +33,8 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (!isClickInsideNav && navMenu.classList.contains('active')) {
             navMenu.classList.remove('active');
-            const bars = mobileMenu.querySelectorAll('.bar');
-            bars[0].style.transform = '';
-            bars[1].style.opacity = '1';
-            bars[2].style.transform = '';
+            mobileMenu.classList.remove('active');
+            body.style.overflow = '';
         }
     });
 });
@@ -429,32 +428,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Loading animation
-window.addEventListener('load', () => {
-    document.body.classList.add('loaded');
-});
 
-// Add loading styles
-const loadingStyles = document.createElement('style');
-loadingStyles.textContent = `
-    body::before {
-        content: '';
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background:
-            radial-gradient(circle at 15% 20%, rgba(46, 204, 113, 0.42), transparent 28%),
-            radial-gradient(circle at 70% 35%, rgba(52, 152, 219, 0.5), transparent 26%),
-            linear-gradient(135deg, #111827 0%, #172033 48%, #12313a 100%);
-        z-index: 10000;
-        transition: opacity 0.5s ease-out;
-        pointer-events: none;
-    }
-    
-    body.loaded::before {
-        opacity: 0;
-    }
-`;
-document.head.appendChild(loadingStyles);
